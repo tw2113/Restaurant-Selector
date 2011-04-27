@@ -31,7 +31,7 @@ h2 {margin-top: 15px; height: 25px;}
 	<p>A blank spot means it's a wildcard and someone else decides for you.
 	<br/>Refresh to see another option.</p>
 	
-    <p>Source at: <a href="#" title="Restaurant Selector Github Repo">Github</a>
+    <p>Source at: <a href="https://github.com/tw2113/Restaurant-Selector" title="Restaurant Selector Github Repo">Github</a>
 	</article>
 </body>
 </html>
