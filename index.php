@@ -33,10 +33,10 @@ h2 {margin-top: 15px; height: 25px;}
     <p id="cords"></p>
     <h1>Where should I go for lunch today?</h1>
     <h2><?php echo $randrestaurant; ?></h2>
-    
+
     <p>A blank spot means it's a wildcard and someone else decides for you.
     <br/>Refresh to see another option.</p>
-    
+
     <p>Source at: <a href="https://github.com/tw2113/Restaurant-Selector" title="Restaurant Selector Github Repo">Github</a>
     </article>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -44,13 +44,13 @@ h2 {margin-top: 15px; height: 25px;}
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-5073546-5']);
     _gaq.push(['_trackPageview']);
-    
+
     (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-    
+
     function get_location() {
         navigator.geolocation.getCurrentPosition(get_4sq);
     }
