@@ -42,7 +42,7 @@ h2 {margin-top: 15px; height: 25px;}
        	    	var rand = Math.floor(Math.random()*(dine.length+1));
        	    	$("#dining").html(dine[rand].name);
        	    	var map = new L.Map('map', {scrollWheelZoom: false});
-				ar cloudmadeUrl = 'http://{s}.tile.cloudmade.com/44407b1aa8c04d79b5771f52fdee1a32/997/256/{z}/{x}/{y}.png';
+				var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/44407b1aa8c04d79b5771f52fdee1a32/997/256/{z}/{x}/{y}.png';
 				cloudmadeAttrib = 'trexthepirate.com';
 				cloudmade = new L.TileLayer(cloudmadeUrl, {minZoom: 7, maxZoom: 14, attribution: loudmadeAttrib});
 				latlong = new L.LatLng(lat, lon);
