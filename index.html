@@ -29,7 +29,7 @@ h2 {margin-top: 15px; height: 25px;}
 			var lat = position.coords.latitude;
        		var lon = position.coords.longitude;
        		$.getJSON(
-        		"https://api.foursquare.com/v2/venues/explore?ll="+lat+","+lon+"&client_id=D3AWZJT3V5FM1H44NCINRX2STZM0UYPJAWWKID1P3FPI0YQ&client_secret=5LC0V5XKCF0BO1HZTJCXMDESV4IMXWSBFRNM0J3SFH5UPBH&radius=3218&limit=40&section=food&v=20120120", function(data){
+        		"https://api.foursquare.com/v2/venues/explore?ll="+lat+","+lon+"&client_id=D3AWZJT3V5FMQ1H44NCINRX2STZM0UYPJAWWKID1P3FPI0YQ&client_secret=5LC0V5XKCF0BO1HZTJCXMDESV4IMXWSBFRNMM0J3SFH5UPBH&radius=3218&limit=40&section=food&v=20120120", function(data){
        			var dine = [];
        			for(var i = 0; i < data.response.groups[0].items.length; i++) {
        	    		dine.push({
@@ -44,7 +44,7 @@ h2 {margin-top: 15px; height: 25px;}
        	    	var map = new L.Map('map', {scrollWheelZoom: false});
 				var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/44407b1aa8c04d79b5771f52fdee1a32/997/256/{z}/{x}/{y}.png';
 				cloudmadeAttrib = 'trexthepirate.com';
-				cloudmade = new L.TileLayer(cloudmadeUrl, {minZoom: 7, maxZoom: 14, attribution: loudmadeAttrib});
+				cloudmade = new L.TileLayer(cloudmadeUrl, {minZoom: 7, maxZoom: 14, attribution: cloudmadeAttrib});
 				latlong = new L.LatLng(lat, lon);
 				restaurant = new L.LatLng(dine[rand].lat,dine[rand].lng);
 				map.setView(latlong, 12).addLayer(cloudmade);
