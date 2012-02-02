@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 	<title>Random Restaurant Selector</title>
 <style>
-body {background: #FFFEF2; color: #2359FF;}
+body {background: #FFFEF2; color: #112C80;}
 article {background: #AFBAFF; display:block; border-radius: 15px; margin: 0 auto; padding: 5px 15px; width: 75%; text-align: center; position: relative;}
 h1 {margin-top: 0;}
 h2 {margin: 10px 0; height: 25px;}
@@ -27,8 +27,9 @@ h2 {margin: 10px 0; height: 25px;}
 	<script>
 		navigator.geolocation.getCurrentPosition(letseat);
 		function letseat(position) {
-			var lat = position.coords.latitude;
-       		var lon = position.coords.longitude;
+			var lat, lon;
+			lat = position.coords.latitude;
+       		lon = position.coords.longitude;
        		sessionStorage.lat = lat;
        		sessionStorage.lon = lon
        		$.getJSON(
@@ -36,23 +37,24 @@ h2 {margin: 10px 0; height: 25px;}
 				sessionStorage.noms = JSON.stringify(data);
        		});
 		}
-		var map = new L.Map('map', {scrollWheelZoom: false});
-		var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/44407b1aa8c04d79b5771f52fdee1a32/997/256/{z}/{x}/{y}.png';
-		var cloudmadeAttrib = 'trexthepirate.com';
-		var cloudmade = new L.TileLayer(cloudmadeUrl, {minZoom: 7, maxZoom: 14, attribution: cloudmadeAttrib});
-		var lat = sessionStorage.lat;
-		var lon = sessionStorage.lon;
-		var latlong = new L.LatLng(lat,lon);
+		var map, cloudmadeUrl, cloudmadeAttrib, cloudmade, lat, lon, latlong, me;
+		map = new L.Map('map', {scrollWheelZoom: false});
+		cloudmadeUrl = 'http://{s}.tile.cloudmade.com/44407b1aa8c04d79b5771f52fdee1a32/997/256/{z}/{x}/{y}.png';
+		cloudmadeAttrib = 'trexthepirate.com';
+		cloudmade = new L.TileLayer(cloudmadeUrl, {minZoom: 7, maxZoom: 14, attribution: cloudmadeAttrib});
+		lat = sessionStorage.lat;
+		lon = sessionStorage.lon;
+		latlong = new L.LatLng(lat,lon);
 		map.setView(latlong, 12).addLayer(cloudmade);
-		var me = new L.Marker(latlong);
+		me = new L.Marker(latlong);
 		map.addLayer(me);
 		me.bindPopup("You are here").openPopup();
 		function nomMe() {
-			var noms = JSON.parse(sessionStorage.noms);
-			var lat = sessionStorage.lat;
-			var lon = sessionStorage.lon;
-			var rand = Math.floor(Math.random()*11);
-			var dine = [];
+			var noms, lat, lon, dine, rand, eat;
+			noms = JSON.parse(sessionStorage.noms);
+			lat = sessionStorage.lat;
+			lon = sessionStorage.lon;
+			dine = [];
        			for(var i = 0; i < noms.response.groups[0].items.length; i++) {
        	    		dine.push({
         	    		name: noms.response.groups[0].items[i].venue.name,
@@ -61,17 +63,17 @@ h2 {margin: 10px 0; height: 25px;}
         	    		addr: noms.response.groups[0].items[i].venue.location.address,
         	    	});
        	    	};
-       	    	var rand = Math.floor(Math.random()*(dine.length+1));
-       	    	$("#dining").html(dine[rand].name+' on '+dine[rand].addr);
-
-				restaurant = new L.LatLng(dine[rand].lat,dine[rand].lng);
-				var eat = new L.Marker(restaurant);
-				map.addLayer(eat);
-				eat.bindPopup('<p>'+dine[rand].name+'<br/>'+dine[rand].addr+'</p>').openPopup();
-				return false;
+       	    rand = Math.floor(Math.random()*(dine.length+1));
+       	    $("#dining").html(dine[rand].name+' on '+dine[rand].addr);
+			restaurant = new L.LatLng(dine[rand].lat,dine[rand].lng);
+			eat = new L.Marker(restaurant);
+			map.addLayer(eat);
+			eat.bindPopup('<p>'+dine[rand].name+'<br/>'+dine[rand].addr+'</p>').openPopup();
+			return false;
 		}
 	</script>
-	<p>Restaurant data provided by Foursquare Recommended/Popular Venues</p>
+	<p>Noms data provided by Foursquare Recommended/Popular Venues.<br/>
+	Uses: Geolocation, sessionStorage, foursquare, leafletjs.</p>
     <p>Source at: <a href="https://github.com/tw2113/Restaurant-Selector" title="Restaurant Selector Github Repo">Github</a></p>
 	</article>
 	<script>
